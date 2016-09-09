@@ -1,0 +1,1 @@
+D:\University\Developement Project 1\BattleShip\Battleships-Xamarin\obj\x86\Debug-Mac\MyGame.csprojResolveAssemblyReference.cache
