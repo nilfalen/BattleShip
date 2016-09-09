@@ -20,7 +20,7 @@ public interface ISeaGrid
 	// <value>what the player can see at that location</value>
 	// <returns>what the player can see at that location</returns>
 
-	TileView Item { get; }
+	TileView this[int row, int col] { get; }
 	// Mark the indicated tile as shot.
 	// <param name="row">the row of the tile</param>
 	// <param name="col">the column of the tile</param>
