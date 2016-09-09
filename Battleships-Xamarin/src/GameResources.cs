@@ -272,21 +272,21 @@ public static class GameResources
 
 	private static void FreeImages()
 	{
-		foreach (Font obj in _Images.Values) {
+		foreach (Bitmap obj in _Images.Values) {
 			SwinGame.FreeBitmap(obj);
 		}
 	}
 
 	private static void FreeSounds()
 	{
-		foreach (Font obj in _Sounds.Values) {
+		foreach (SoundEffect obj in _Sounds.Values) {
 			Audio.FreeSoundEffect(obj);
 		}
 	}
 
 	private static void FreeMusic()
 	{
-		foreach (Font obj in _Music.Values) {
+		foreach (Music obj in _Music.Values) {
 			Audio.FreeMusic(obj);
 		}
 	}

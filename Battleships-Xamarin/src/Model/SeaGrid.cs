@@ -25,7 +25,7 @@ public class SeaGrid : ISeaGrid
 	/// <summary>
 	/// The sea grid has changed and should be redrawn.
 	/// </summary>
-	event EventHandler Changed;
+	public event EventHandler Changed;
 
 	/// <summary>
 	/// The width of the sea grid.

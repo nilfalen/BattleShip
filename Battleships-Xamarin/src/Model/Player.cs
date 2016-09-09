@@ -73,13 +73,13 @@ public class Player : IEnumerable<Ship>
 	// <value>The ship</value>
 	// <returns>The ship with the indicated name</returns>
 	// <remarks>The none ship returns nothing/null</remarks>
-	public Ship Ship {
-		get {
-			if (name == ShipName.None)
-				return null;
+	public Ship Ship(ShipName name) {
 
-			return _Ships[name];
-		}
+		if (name == ShipName.None)
+			return null;
+
+		return _Ships[name];
+
 	}
 
 	// The number of shots the player has made

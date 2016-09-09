@@ -132,7 +132,7 @@ static class UtilityFunctions
 
 				draw = true;
 
-				switch (grid(row, col)) {
+				switch (grid[row, col]) {
 				//case TileView.Ship:
 				//	draw = false;
 				//	break;
@@ -267,7 +267,7 @@ static class UtilityFunctions
 		Sprite s = default(Sprite);
 		Bitmap imgObj = default(Bitmap);
 
-		imgObj = GameResources.GameIma(image);
+		imgObj = GameResources.GameImage(image);
 		imgObj.SetCellDetails(40, 40, 3, 3, 7);
 
 		AnimationScript animation = default(AnimationScript);
@@ -286,7 +286,7 @@ static class UtilityFunctions
 		List<Sprite> ended = new List<Sprite>();
 		foreach (Sprite s in _Animations) {
 			SwinGame.UpdateSprite(s);
-			if (s.animationHasEnded) {
+			if (s.AnimationHasEnded) {
 				ended.Add(s);
 			}
 		}

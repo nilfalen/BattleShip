@@ -13,7 +13,7 @@ public interface ISeaGrid
 	int Height { get; }
 	// Indicates that the grid has changed.
 
-	event EventHandler ISeaGrid.Changed;
+	event EventHandler Changed;
 	// Provides access to the given row/column
 	// <param name="row">the row to access</param>
 	// <param name="column">the column to access</param>
