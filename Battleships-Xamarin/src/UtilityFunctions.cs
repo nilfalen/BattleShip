@@ -4,10 +4,9 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics;
 using SwinGameSDK;
-/// <summary>
-/// This includes a number of utility methods for
-/// drawing and interacting with the Mouse.
-/// </summary>
+
+// This includes a number of utility methods for
+// drawing and interacting with the Mouse.
 static class UtilityFunctions
 {
 	public const int FIELD_TOP = 122;
@@ -41,14 +40,7 @@ static class UtilityFunctions
 	public const int ANIMATION_CELLS = 7;
 
 	public const int FRAMES_PER_CELL = 8;
-	/// <summary>
-	/// Determines if the mouse is in a given rectangle.
-	/// </summary>
-	/// <param name="x">the x location to check</param>
-	/// <param name="y">the y location to check</param>
-	/// <param name="w">the width to check</param>
-	/// <param name="h">the height to check</param>
-	/// <returns>true if the mouse is in the area checked</returns>
+	// Determines if the mouse is in a given rectangle.
 	public static bool IsMouseInRectangle(int x, int y, int w, int h)
 	{
 		Point2D mouse = default(Point2D);
@@ -56,7 +48,7 @@ static class UtilityFunctions
 
 		mouse = SwinGame.MousePosition();
 
-		//if the mouse is inline with the button horizontally
+		// if the mouse is inline with the button horizontally
 		if (mouse.X >= x & mouse.X <= x + w) {
 			//Check vertical position
 			if (mouse.Y >= y & mouse.Y <= y + h) {
@@ -67,23 +59,14 @@ static class UtilityFunctions
 		return result;
 	}
 
-	/// <summary>
-	/// Draws a large field using the grid and the indicated player's ships.
-	/// </summary>
-	/// <param name="grid">the grid to draw</param>
-	/// <param name="thePlayer">the players ships to show</param>
-	/// <param name="showShips">indicates if the ships should be shown</param>
+	// Draws a large field using the grid and the indicated player's ships.
 	public static void DrawField(ISeaGrid grid, Player thePlayer, bool showShips)
 	{
 		DrawCustomField(grid, thePlayer, false, showShips, FIELD_LEFT, FIELD_TOP, FIELD_WIDTH, FIELD_HEIGHT, CELL_WIDTH, CELL_HEIGHT,
 			CELL_GAP);
 	}
 
-	/// <summary>
-	/// Draws a small field, showing the attacks made and the locations of the player's ships
-	/// </summary>
-	/// <param name="grid">the grid to show</param>
-	/// <param name="thePlayer">the player to show the ships of</param>
+	// Draws a small field, showing the attacks made and the locations of the player's ships
 	public static void DrawSmallField(ISeaGrid grid, Player thePlayer)
 	{
 		const int SMALL_FIELD_LEFT = 39;
@@ -98,29 +81,16 @@ static class UtilityFunctions
 			SMALL_FIELD_CELL_GAP);
 	}
 
-	/// <summary>
-	/// Draws the player's grid and ships.
-	/// </summary>
-	/// <param name="grid">the grid to show</param>
-	/// <param name="thePlayer">the player to show the ships of</param>
-	/// <param name="small">true if the small grid is shown</param>
-	/// <param name="showShips">true if ships are to be shown</param>
-	/// <param name="left">the left side of the grid</param>
-	/// <param name="top">the top of the grid</param>
-	/// <param name="width">the width of the grid</param>
-	/// <param name="height">the height of the grid</param>
-	/// <param name="cellWidth">the width of each cell</param>
-	/// <param name="cellHeight">the height of each cell</param>
-	/// <param name="cellGap">the gap between the cells</param>
+	// Draws the player's grid and ships.
 	private static void DrawCustomField(ISeaGrid grid, Player thePlayer, bool small, bool showShips, int left, int top, int width, int height, int cellWidth, int cellHeight,
 		int cellGap)
 	{
-		//SwinGame.FillRectangle(Color.Blue, left, top, width, height)
+		// SwinGame.FillRectangle(Color.Blue, left, top, width, height)
 
 		int rowTop = 0;
 		int colLeft = 0;
 
-		//Draw the grid
+		// Draw the grid
 		for (int row = 0; row <= 9; row++) {
 			rowTop = top + (cellGap + cellHeight) * row;
 
@@ -133,10 +103,10 @@ static class UtilityFunctions
 				draw = true;
 
 				switch (grid[row, col]) {
-				//case TileView.Ship:
+				// case TileView.Ship:
 				//	draw = false;
 				//	break;
-					//If small Then fillColor = _SMALL_SHIP Else fillColor = _LARGE_SHIP
+				// If small Then fillColor = _SMALL_SHIP Else fillColor = _LARGE_SHIP
 				case TileView.Miss:
 					if (small)
 						fillColor = SMALL_MISS;
@@ -175,7 +145,7 @@ static class UtilityFunctions
 		int shipWidth = 0;
 		string shipName = null;
 
-		//Draw the ships
+		// Draw the ships
 		foreach (Ship s in thePlayer) {
 			if (s == null || !s.IsDeployed)
 				continue;
@@ -187,7 +157,7 @@ static class UtilityFunctions
 				shipHeight = cellHeight - (SHIP_GAP * 2);
 				shipWidth = (cellWidth + cellGap) * s.Size - (SHIP_GAP * 2) - cellGap;
 			} else {
-				//Up down
+				// Up down
 				shipName = "ShipUD" + s.Size;
 				shipHeight = (cellHeight + cellGap) * s.Size - (SHIP_GAP * 2) - cellGap;
 				shipWidth = cellWidth - (SHIP_GAP * 2);
@@ -204,32 +174,26 @@ static class UtilityFunctions
 
 
 	private static string _message;
-	/// <summary>
-	/// The message to display
-	/// </summary>
-	/// <value>The message to display</value>
-	/// <returns>The message to display</returns>
+	// The message to display
 	public static string Message {
 		get { return _message; }
 		set { _message = value; }
 	}
 
-	/// <summary>
-	/// Draws the message to the screen
-	/// </summary>
+	// Draws the message to the screen
 	public static void DrawMessage()
 	{
 		SwinGame.DrawText(Message, MESSAGE_COLOR, GameResources.GameFont("Courier"), FIELD_LEFT, MESSAGE_TOP);
 	}
 
-	/// <summary>
-	/// Draws the background for the current state of the game
-	/// </summary>
+	// Draws the background for the current state of the game
 
 	public static void DrawBackground()
 	{
 		switch (GameController.CurrentState) {
 		case GameState.ViewingMainMenu:
+			SwinGame.DrawBitmap (GameResources.GameImage ("Menu"), 0, 0);
+			break;
 		case GameState.ViewingGameMenu:
 		case GameState.AlteringSettings:
 		case GameState.ViewingHighScores:

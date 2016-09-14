@@ -11,6 +11,10 @@ static class GameLogic
 		//Opens a new Graphics Window
 		SwinGame.OpenGraphicsWindow("Battle Ships", 800, 600);
 
+		//SwinGame.ShowSwinGameSplashScreen ();
+
+		//SwinGame.LoadBitmapNamed ("main", "c://SwinProg/SDP/BattleShip/BattleShips-Xamarin/Resources/images/SplashBack.png");
+
 		//Load Resources
 		GameResources.LoadResources();
 
@@ -18,6 +22,10 @@ static class GameLogic
 
 		//Game Loop
 		do {
+			//SwinGame.ClearScreen (Color.White);
+			//SwinGame.DrawBitmap ("main", 0, 0);
+			//SwinGame.RefreshScreen ();
+			//SwinGame.ProcessEvents ();
 			GameController.HandleUserInput();
 			GameController.DrawScreen();
 		} while (!(SwinGame.WindowCloseRequested() == true | GameController.CurrentState == GameState.Quitting));
