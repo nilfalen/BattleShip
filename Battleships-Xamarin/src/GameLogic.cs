@@ -2,8 +2,8 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Data;
 using System.Diagnostics;
+using SwinGameSDK;
 static class GameLogic
 {
 	public static void Main()
@@ -11,20 +11,28 @@ static class GameLogic
 		//Opens a new Graphics Window
 		SwinGame.OpenGraphicsWindow("Battle Ships", 800, 600);
 
-		//Load Resources
-		LoadResources();
+		//SwinGame.ShowSwinGameSplashScreen ();
 
-		SwinGame.PlayMusic(GameMusic("Background"));
+		//SwinGame.LoadBitmapNamed ("main", "c://SwinProg/SDP/BattleShip/BattleShips-Xamarin/Resources/images/SplashBack.png");
+
+		//Load Resources
+		GameResources.LoadResources();
+
+		SwinGame.PlayMusic(GameResources.GameMusic("Background"));
 
 		//Game Loop
 		do {
-			HandleUserInput();
-			DrawScreen();
-		} while (!(SwinGame.WindowCloseRequested() == true | CurrentState == GameState.Quitting));
+			//SwinGame.ClearScreen (Color.White);
+			//SwinGame.DrawBitmap ("main", 0, 0);
+			//SwinGame.RefreshScreen ();
+			//SwinGame.ProcessEvents ();
+			GameController.HandleUserInput();
+			GameController.DrawScreen();
+		} while (!(SwinGame.WindowCloseRequested() == true | GameController.CurrentState == GameState.Quitting));
 
 		SwinGame.StopMusic();
 
 		//Free Resources and Close Audio, to end the program.
-		FreeResources();
+		GameResources.FreeResources();
 	}
 }
