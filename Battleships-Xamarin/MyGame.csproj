@@ -181,5 +181,6 @@
     <Compile Include="src\UtilityFunctions.cs" />
     <Compile Include="src\DeploymentController.cs" />
     <Compile Include="src\MenuController.cs" />
+    <Compile Include="src\Model\AIEasyPlayer.cs" />
   </ItemGroup>
 </Project>
