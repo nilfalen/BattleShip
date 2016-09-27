@@ -227,7 +227,7 @@ static class MenuController
 			GameController.SetDifficulty(AIOption.Hard);
 			break;
 		case SETUP_MENU_MEDIUM_BUTTON:
-			GameController.SetDifficulty(AIOption.Hard);
+			GameController.SetDifficulty(AIOption.Medium);
 			break;
 		case SETUP_MENU_HARD_BUTTON:
 			GameController.SetDifficulty(AIOption.Hard);
