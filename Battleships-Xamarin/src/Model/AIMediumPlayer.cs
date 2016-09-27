@@ -4,7 +4,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics;
 
-// The AIMediumPlayer is a type of AIPlayer where it will try and destroy a ship
+// The AIPlayer is a type of AIPlayer where it will try and destroy a ship
 // if it has found a ship
 public class AIMediumPlayer : AIPlayer
 {
