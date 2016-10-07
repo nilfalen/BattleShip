@@ -66,6 +66,9 @@
     </Reference>
     <Reference Include="System.Drawing" />
     <Reference Include="System" />
+    <Reference Include="nunit.framework">
+      <HintPath>packages\NUnit.3.5.0\lib\net40\nunit.framework.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\animations\startup.txt">
@@ -149,6 +152,7 @@
     <WinLibraryFiles Include="lib\win\smpeg.dll" />
     <WinLibraryFiles Include="lib\win\swingame.rc" />
     <WinLibraryFiles Include="lib\win\zlib1.dll" />
+    <None Include="packages.config" />
   </ItemGroup>
   <Target Name="CopyFiles">
     <Copy SourceFiles="@(MacLibraryFiles)" DestinationFolder="$(OutDir)" />
@@ -182,5 +186,7 @@
     <Compile Include="src\DeploymentController.cs" />
     <Compile Include="src\MenuController.cs" />
     <Compile Include="src\Model\AIEasyPlayer.cs" />
+    <Compile Include="src\GameControllerUnitTest.cs" />
+    <Compile Include="src\ShipUnitTest.cs" />
   </ItemGroup>
 </Project>
