@@ -168,9 +168,31 @@ public class SeaGrid : ISeaGrid
 	public AttackResult HitTile(int row, int col)
 	{
 		try {
+			Random _r = new Random();
+			int _rand = _r.Next(1,6);
 			//tile is already hit
 			if (_GameTiles[row, col].Shot) {
-				UtilityFunctions.Chat = "Wasn't that quite silly?";
+				switch(_rand)
+				{
+				case 1: 
+					UtilityFunctions.Chat = "Wasn't that quite silly?";
+					break;
+				case 2: 
+					UtilityFunctions.Chat = "Why are you doing that?";
+					break;
+				case 3: 
+					UtilityFunctions.Chat = "I dont understand you sometimes.";
+					break;
+				case 4: 
+					UtilityFunctions.Chat = "There's nothing there, again.";
+					break;
+				case 5: 
+					UtilityFunctions.Chat = "Keep doing whatever you think it is you're doing.";
+					break;
+				default:
+					UtilityFunctions.Chat = "Keep doing whatever you think it is you're doing.";
+					break;
+				}
 				return new AttackResult(ResultOfAttack.ShotAlready, "have already attacked [" + col + "," + row + "]!", row, col);
 			}
 
@@ -186,12 +208,52 @@ public class SeaGrid : ISeaGrid
 			if (_GameTiles[row, col].Ship.IsDestroyed) {
 				_GameTiles[row, col].Shot = true;
 				_ShipsKilled += 1;
-				UtilityFunctions.Chat = "Dammit!";
+				switch(_rand)
+				{
+				case 1: 
+					UtilityFunctions.Chat = "That was important to me.";
+					break;
+				case 2: 
+					UtilityFunctions.Chat = "Oh, that's where i left that.";
+					break;
+				case 3: 
+					UtilityFunctions.Chat = "This isn't brave, it's murder.";
+					break;
+				case 4: 
+					UtilityFunctions.Chat = "Leave. It. Alone.";
+					break;
+				case 5: 
+					UtilityFunctions.Chat = "I just fixed that.";
+					break;
+				default:
+					UtilityFunctions.Chat = "That was important to me.";
+					break;
+				}
 				return new AttackResult(ResultOfAttack.Destroyed, _GameTiles[row, col].Ship, "destroyed the enemy's", row, col);
 			}
 
 			//else hit but not destroyed
-			UtilityFunctions.Chat = "Darn";
+			switch(_rand)
+			{
+			case 1: 
+				UtilityFunctions.Chat = "Really? Okay.";
+				break;
+			case 2: 
+				UtilityFunctions.Chat = "Oh, that's where i left that.";
+				break;
+			case 3: 
+				UtilityFunctions.Chat = "Just stop it already.";
+				break;
+			case 4: 
+				UtilityFunctions.Chat = "Was that really neccecary?";
+				break;
+			case 5: 
+				UtilityFunctions.Chat = "Yes, I know you did that.";
+				break;
+			default:
+				UtilityFunctions.Chat = "Was that really neccecary?";
+				break;
+			}
 			return new AttackResult(ResultOfAttack.Hit, "hit something!", row, col);
 		} finally {
 			if (Changed != null) {

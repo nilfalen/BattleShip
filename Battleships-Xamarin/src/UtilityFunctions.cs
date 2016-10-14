@@ -10,7 +10,7 @@ using SwinGameSDK;
 static class UtilityFunctions
 {
 	public const int CHAT_X = 349;
-	public const int CHAT_Y = 564;
+	public const int CHAT_Y = 544;
 
 	public const int MESSAGE_X = 38;
 	public const int MESSAGE_Y = 564;
