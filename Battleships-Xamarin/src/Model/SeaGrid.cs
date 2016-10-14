@@ -170,6 +170,7 @@ public class SeaGrid : ISeaGrid
 		try {
 			//tile is already hit
 			if (_GameTiles[row, col].Shot) {
+				UtilityFunctions.Chat = "Wasn't that quite silly?";
 				return new AttackResult(ResultOfAttack.ShotAlready, "have already attacked [" + col + "," + row + "]!", row, col);
 			}
 
@@ -177,6 +178,7 @@ public class SeaGrid : ISeaGrid
 
 			//there is no ship on the tile
 			if (_GameTiles[row, col].Ship == null) {
+				UtilityFunctions.Chat = "";
 				return new AttackResult(ResultOfAttack.Miss, "missed", row, col);
 			}
 
@@ -184,10 +186,12 @@ public class SeaGrid : ISeaGrid
 			if (_GameTiles[row, col].Ship.IsDestroyed) {
 				_GameTiles[row, col].Shot = true;
 				_ShipsKilled += 1;
+				UtilityFunctions.Chat = "Dammit!";
 				return new AttackResult(ResultOfAttack.Destroyed, _GameTiles[row, col].Ship, "destroyed the enemy's", row, col);
 			}
 
 			//else hit but not destroyed
+			UtilityFunctions.Chat = "Darn";
 			return new AttackResult(ResultOfAttack.Hit, "hit something!", row, col);
 		} finally {
 			if (Changed != null) {

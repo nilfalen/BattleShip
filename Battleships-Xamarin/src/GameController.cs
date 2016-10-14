@@ -16,11 +16,16 @@ public static class GameController
 	private static AIPlayer _ai;
 	private static Stack<GameState> _state = new Stack<GameState>();
 	private static AIOption _aiSetting;
+	private static bool isHuman = false;
 
 	// Returns the current state of the game, indicating which screen is
 	// currently being used
 	public static GameState CurrentState {
 		get { return _state.Peek(); }
+	}
+
+	public static bool IsHuman {
+		get { return isHuman; }
 	}
 
 	// Returns the human player.
@@ -119,7 +124,6 @@ public static class GameController
 	// Displays a message, plays sound and redraws the screen
 	private static void AttackCompleted(object sender, AttackResult result)
 	{
-		bool isHuman = false;
 		isHuman = object.ReferenceEquals(_theGame.Player, HumanPlayer);
 
 		if (isHuman) {

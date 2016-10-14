@@ -9,13 +9,18 @@ using SwinGameSDK;
 // drawing and interacting with the Mouse.
 static class UtilityFunctions
 {
+	public const int CHAT_X = 349;
+	public const int CHAT_Y = 564;
+
+	public const int MESSAGE_X = 38;
+	public const int MESSAGE_Y = 564;
+
 	public const int FIELD_TOP = 122;
 	public const int FIELD_LEFT = 349;
 	public const int FIELD_WIDTH = 418;
 
 	public const int FIELD_HEIGHT = 418;
 
-	public const int MESSAGE_TOP = 548;
 	public const int CELL_WIDTH = 40;
 	public const int CELL_HEIGHT = 40;
 
@@ -183,7 +188,19 @@ static class UtilityFunctions
 	// Draws the message to the screen
 	public static void DrawMessage()
 	{
-		SwinGame.DrawText(Message, MESSAGE_COLOR, GameResources.GameFont("Courier"), FIELD_LEFT, MESSAGE_TOP);
+		SwinGame.DrawText(Message, MESSAGE_COLOR, GameResources.GameFont("Courier"), MESSAGE_X, MESSAGE_Y);
+	}
+
+	private static string _chat;
+	// The message to display
+	public static string Chat {
+		get { return _chat; }
+		set { _chat = value; }
+	}
+
+	public static void DrawChat()
+	{
+		SwinGame.DrawText(Chat, MESSAGE_COLOR, GameResources.GameFont("Courier"), CHAT_X, CHAT_Y);
 	}
 
 	// Draws the background for the current state of the game
