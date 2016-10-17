@@ -107,7 +107,6 @@ static class HighScoreController
 		foreach (Score s in _Scores) {
 			output.WriteLine(s.Name + s.Value);
 		}
-
 		output.Close();
 	}
 
@@ -197,7 +196,7 @@ static class HighScoreController
 			_Scores.RemoveAt(_Scores.Count - 1);
 			_Scores.Add(s);
 			_Scores.Sort();
-
+			SaveScores ();
 			GameController.EndCurrentState();
 		}
 	}
