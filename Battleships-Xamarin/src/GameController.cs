@@ -10,17 +10,65 @@ using SwinGameSDK;
 // game.
 public static class GameController
 {
+    
 
-	private static BattleShipsGame _theGame;
+
+    private static BattleShipsGame _theGame;
 	private static Player _human;
 	private static AIPlayer _ai;
 	private static Stack<GameState> _state = new Stack<GameState>();
 	private static AIOption _aiSetting;
 	private static bool isHuman = false;
 
-	// Returns the current state of the game, indicating which screen is
-	// currently being used
-	public static GameState CurrentState {
+    //create a list to store attacked spot
+    private static IList<Point> attackedPoints = new List<Point>();
+
+    //create a point class
+    public class Point
+    {
+        public int X { get; set; }
+        public int Y { get; set; }
+
+        public Point(int x, int y)
+        {
+            this.X = x;
+            this.Y = y;
+        }
+    }
+
+    //create an isAttacked function
+    private static bool isAttacked(int row, int col)
+    {
+        foreach (var p in attackedPoints)
+        {
+            if (p.X == row && p.Y == col)
+            {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    // Gets the player to attack the indicated row and column.
+    // Checks the attack result once the attack is complete
+    public static void Attack(int row, int col)
+    {
+        if (isAttacked(row, col))
+        {
+            return false;
+        }
+
+        attackedPoints.Add(new Point(row, col));
+        AttackResult result = default(AttackResult);
+        result = _theGame.Shoot(row, col);
+        CheckAttackResult(result);
+    }
+
+    // Returns the current state of the game, indicating which screen is
+    // currently being used
+
+    public static GameState CurrentState {
 		get { return _state.Peek(); }
 	}
 
@@ -179,14 +227,9 @@ public static class GameController
 		SwitchState(GameState.Discovering);
 	}
 
-	// Gets the player to attack the indicated row and column.
-	// Checks the attack result once the attack is complete
-	public static void Attack(int row, int col)
-	{
-		AttackResult result = default(AttackResult);
-		result = _theGame.Shoot(row, col);
-		CheckAttackResult(result);
-	}
+
+
+    
 
 	// Gets the AI to attack.
 	// Checks the attack result once the attack is complete.
@@ -314,3 +357,4 @@ public static class GameController
 	}
 
 }
+
