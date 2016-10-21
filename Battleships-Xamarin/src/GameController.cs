@@ -54,10 +54,10 @@ public static class GameController
     // Checks the attack result once the attack is complete
     public static void Attack(int row, int col)
     {
-        if (isAttacked(row, col))
-        {
-            return false;
-        }
+        //if (isAttacked(row, col))
+        //{
+        //    return false;
+        //}
 
         attackedPoints.Add(new Point(row, col));
         AttackResult result = default(AttackResult);
